@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Company Details</title>
+    <style>
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+
+
+.nav{
+    width:100%;
+    background-color: rgb(0, 0, 0);
+    display:flex;
+    /* padding:1% 6%; */
+    /* justify-content:space-between; */
+    /* align-items:top; */
+    text-align:right;
+    height:120px;
+    /* border-bottom:2px solid #6600ff; */
+    top: 0%;
+    position: fixed; 
+    /* border: 1px solid red; */
+    
+}
+li{
+    display: inline;
+}
+
+section {
+    padding: 15px;
+    padding-top: 100px;
+}
+/* 
+img{
+    top:0%;
+} */
+
+
+footer {
+    background-color:#000000;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+
+.navin{
+    color: #fff; 
+    vertical-align: middle;
+     height: 100%;
+     /* margin-left: 1%; */
+     /* margin-top: 3%;  */
+     font-size:xx-large;
+     /* border: 1px solid rgb(0, 38, 255); */
+     top: 0%;
+     width: 50%;
+     padding-top: 3%;
+     
+}
+.link{
+    /* margin-left: 10%; */
+    width: 100%;
+    /* border: 1px solid rgb(255, 255, 255); */
+    left: 0%;
+    /* color: #fff; */
+    font-size: x-large;
+    padding: 3%;
+}
+a{
+    background-color: aqua;
+    padding: 1%;
+    border-radius: 25px;
+    color: #fff;
+    text-decoration: none;
+
+}
+
+</style>
+</head>
+<body>
+    <div class="nav">  
+        <img src="tcs.png" height="100" width="100">      
+        <div class="navin">{{companydata['company_name']}}</div>  
+        <div class="link">
+            <a href="{{ url_for('company.company_list') }}" >Companies List</a>
+            <a href="{{ url_for('log.profile') }}" >Go back to Profile</a>
+            <a href="/apply/{{companydata['company_name']}}">{{apply}}</a>
+        </div> 
+    </div>
+	
+    
+    
+
+
+    <section id="section1">
+        <h3>Website</h3>
+        <p>{{companydata['website']}}</p>
+    
+        <h3>Qualification Degree</h3>
+        <p><pre>{{companydata['qualification']}}</pre></p>
+        
+        <h3>Job Profile</h3>
+        <p><pre>{{companydata['job_profile']}}</pre></p>
+        
+        <h3>Roles & Responsibility</h3>
+        <p><pre>{{companydata['role']}}</pre></p>
+        
+        <h3>Skills Required</h3>
+        <p><pre>{{companydata['skills']}}</pre></p>
+
+        <h3>Job Location</h3>
+        <p><pre>{{companydata['location']}}</pre></p>
+
+        <h3>Perks & Benefits</h3>
+        <p><pre>{{companydata['benefits']}}</pre></p>
+
+        <h3>Salary</h3>
+        <p><pre>{{companydata['salary']}}</pre></p>
+
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Placify. All rights reserved.</p>
+    </footer>
+</body>
+</html>

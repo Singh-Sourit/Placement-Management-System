@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company List new</title>
+    <!-- <link rel="stylesheet" href="dashboardstyle.css"> -->
+  
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+   <style>
+   *{
+    margin:0;
+    padding:0;
+    list-style:none;
+    text-decoration:none;
+}
+body{
+    font-family: 'Sofia',sans-serif;
+    font-size: 20px;
+	}
+   
+.tabular-wrapper{
+    background: #fff;
+    margin-top:1rem;
+    border-radius: 10px;
+    padding:2rem;
+}
+.table-container{
+    width: 100%;
+}
+table{
+width: 100%;
+border-collapse:collapse;
+}
+thread{
+    background:rgba(113,99,186,255);
+    color:#fff;
+}
+th{
+    padding:15px;
+    text-align:left;
+}
+tbody{
+    background: #f2f2f2f2;
+}
+td{
+    padding:15px;
+    font-size:14px;
+    color:#333;
+}
+tr:nth-child(even){
+    background: #fff;
+}
+tfoot{
+    background: rgba(113,99,186,255);
+    font-weight:bold;
+    color:#fff;
+}
+tfoot td{
+    padding:15px;
+    color:#fff;
+}
+.table-container button{
+    color:green;
+    background: none;
+    cursor:pointer;
+}
+.h1{
+	  min-height:10vh;
+	  width:100%;
+	margin-left:550px;
+	margin-bottom:10px;
+	  align-items:center;
+	  background-position:center;
+	  align-items:center;
+	  background-size:cover;
+	  position:relative;
+	  }
+	 
+
+      .header{
+    height:90px;
+    width:100%;
+    background-color: rgb(255, 255, 255);
+    border-bottom:2px solid #6600ff;
+    top: 0;
+    position: fixed;
+    }
+
+
+nav{
+    display:flex;
+    padding:1% 6%;
+    justify-content:space-between;
+    align-items:top;
+    }
+    .nav-links{
+        flex:1;
+        text-align:right;
+        margin: auto;
+        font-family: cursive;
+   }
+   .nav-links ul li{
+            list-style:none;
+            display:inline-block;
+            padding:8px 12px;
+              position:relative;
+   }
+   .nav-links ul li a{
+   color:rgb(124, 58, 239);
+   text-decoration:none;
+   font-size:20px;
+   }
+   .nav-links ul li::after{
+   content:'';
+   width:0%;
+   height:2px;
+   background:#4700fc;
+   display:block;
+   margin:auto;
+   transition:0.3s;
+   /* font-style: italic; */
+}
+.nav-links ul li:hover::after{
+    width:100%;
+    /* font-style: italic; */
+       
+    }
+
+   
+   
+   
+ </style>  
+</head>
+
+<body>
+    <div class="header">
+        <nav>
+            <a href="{{ url_for('main.index') }}">
+                <img src="static/Placify_Logo.svg" height="70">
+            </a>
+            
+            <div class="nav-links">
+                <ul>
+                    <!-- <li><a href="{{ url_for('main.index') }}">Placify Home</a></li> -->
+                    <li><a href="{{ url_for('admin.admin_profile') }}">Admin Dashboard</a></li>
+                    <!-- <li><a href="{{ url_for('auth.register') }}">Sign Up</a></li>  -->
+                </ul>
+            </div>
+        </nav>
+    </div>	
+<div class="tabular-wrapper">
+    <h1 class="h1">Student List</h1>
+	
+    <div class="table-container">
+	
+        <table>
+            <thead>
+                <tr>
+                    <!-- <th>Date</th> -->
+                    <th>Student Name</th>
+                    <th>Roll Number</th>
+                    <th>Course</th>
+                    <th>Branch</th>
+                    <th>Year(Batch)</th>
+                    <th>College</th>
+                    <!-- <th>Address</th> -->
+                </tr>
+                </thead>
+                <tbody>
+                    
+                        {% for student in students %}
+                        <tr>
+						    <td>{{ student.first_name }} {{ student.last_name }}</td>
+                            <td>{{ student.roll_number }}</td>
+                            <td>{{ student.course }}</td>
+                            <td>{{ student.branch }}</td>
+                            <td>{{ student.clg_university_yos }}-{{ student.clg_university_yop }}</td>
+                            <td>{{ student.clg_university_name }}</td>
+                            <td><button><a href="/{{student.roll_number}}">View Profile</button></a></td>
+                            <td><button><a href="/delete_student/{{student.roll_number}}">Delete Student</button></a></td>
+
+                        </tr>
+                        {% endfor %}
+                    
+					 <!-- <tr>
+                        <td>2023-10-26</td>
+                        <td>Sourit</td>
+                        <td>B.COM</td>
+                        <td>Hons</td>
+                        <td>2nd</td>
+                        <td>LNP</td>
+						 <td>Bhopal</td>
+                        <td><button><a href="#">Details</button></a></td>
+                    </tr>
+					 <tr>
+                        <td>2023-10-26</td>
+                        <td>Mahak</td>
+                        <td>B.COM</td>
+                        <td>Hons</td>
+                        <td>2nd</td>
+                        <td>LNP</td>
+						 <td>Bhopal</td>
+                        <td><button><a href="#">Details</button></a></td>
+                    </tr>
+					 <tr>
+                        <td>2023-10-26</td>
+                        <td>Farhan</td>
+                        <td>B.COM</td>
+                        <td>Hons</td>
+                        <td>2nd</td>
+                        <td>LNP</td>
+						 <td>Bhopal</td>
+                        <td><button><a href="#">Details</button></a></td>
+                    </tr>
+					 <tr>
+                        <td>2023-10-26</td>
+                        <td>Abhay</td>
+                        <td>B.COM</td>
+                        <td>Hons</td>
+                        <td>2nd</td>
+                        <td>LNP</td>
+						 <td>Bhopal</td>
+                        <td><button><a href="#">Details</button></a></td>
+                    </tr> -->
+
+                   
+
+                </tbody>
+               
+        </table>
+    </div> 
+</div>
+
+</body>
+</html>

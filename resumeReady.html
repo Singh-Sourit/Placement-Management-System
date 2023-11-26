@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Resume</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        h2 {
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+            margin-top: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .contact-info {
+            margin-top: 10px;
+        }
+
+        .education, .experience ,.projects{
+            margin-top: 20px;
+        }
+
+        .skills {
+            margin-top: 20px;
+        }
+
+        .skills ul {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .skills li {
+            background-color: #eee;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body onload="printFunction()">
+    <!-- <h1>{{user.first_name}} {{user.last_name}}</h1> -->
+    <!-- <h2>{{user.roll_number}}</h2> -->
+    <!-- <h2>{{user.email}}</h2> -->
+    <!-- <h2>{{user.age}}</h2> -->
+    <!-- <p>{{text}}</p> -->
+    <!------------------------------------------------->
+    <header>
+        <h1>{{user.first_name}} {{user.last_name}}</h1>
+        <!-- <p>Web Developer</p> -->
+    </header>
+
+    <section class="contact-info">
+        <h2>Contact Information</h2>
+        <ul>
+        <li>Email: {{user.email}}</li>
+        <li>Phone: {{user.mobile_number}}</li>
+        <li>LinkedIn: {{user.linkedin_id}}</li>
+        <li>GitHub: {{user.other_link}}</li>
+        </ul>
+    </section>
+
+    <section class="education">
+        <h2>Education</h2>
+        <ul>
+            <li><strong>{{user.clg_university_name}}</strong> {{user.clg_university_addr}} <br> {{user.course}}, {{user.branch}}, Current CGPA: {{user.clg_marks}}; {{user.clg_university_yos}}-{{user.clg_university_yop}} </li><br>
+            <li><strong>{{user.school_name_12}}</strong> {{user.school_12_addr}} <br> Higher Secondary, {{user.edu_board_12}}, Marks Percentage: {{user.percentage_12}}; {{user.yop_12}}</li><br>
+            <li><strong>{{user.school_name_10}}</strong> {{user.school_10_addr}} <br> High School, {{user.edu_board_10}}, Marks Percentage: {{user.percentage_10}}; {{user.yop_10}}</li><br>
+        </ul>
+    </section>
+
+    <!-- <section class="experience">
+        <h2>Work Experience</h2>
+        <ul>
+            <li>
+                <strong>Web Developer</strong><br>
+                Company Name - City, State<br>
+                Date Range
+            </li>
+            <!- Add more work experience as needed ->
+        </ul>
+    </section> -->
+
+    <section class="skills">
+        <h2>Skills</h2>
+        <ul>
+            {% for i in user.student_skills %}             
+                <li>{{i.skill_name}}</li>                         
+            {%endfor%} 
+        </ul>
+    </section>
+
+    <section class="projects">
+        <h2>Projects</h2>
+        {% for project in user.projects %}
+            <ul>
+                <li><strong>Project Name:</strong> {{ project.project_name }}<br>
+                <strong>Project Details:</strong> {{ project.project_details }}<br></li>
+            </ul>
+        {% endfor %}
+    </section>
+  
+  
+  
+  <!------------------------------------------------->
+    <script>
+        function printFunction() {
+            window.print();
+        }
+    </script>
+    
+</body>
+</html>

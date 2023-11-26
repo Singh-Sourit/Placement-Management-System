@@ -1,0 +1,400 @@
+
+ body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            /* background-size: cover; */
+            /* display: flex; */
+            justify-content:left-side;
+            align-items: left-side;
+            
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+	
+        }
+/* 
+.short_info {
+    background-color: rgba(33, 24, 211, 0.8);
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
+    /* padding: ; 
+    width: 300px;
+    height: 70vh;
+    align-items:top;
+    text-align: left-side;  
+} */
+
+.profile-card{
+    /* width: 300px;
+    max-width: 350px;
+	height:50%;
+    text-align: center;
+	align-items:left-side;
+    background: #0798e0;
+    color: #ffffff;
+    position: -webkit-sticky;
+    position: sticky; */
+    /* align-items:center; */
+    width: 300px;
+    position: fixed;
+    z-index: 1;
+    top: 100px;
+    left: 10px;
+    background: #aadaf0;
+    overflow-x: hidden;
+    padding: 8px 0;
+    /* align-items: center; */
+    border-radius: 50px;
+    border:5px solid white ;
+    font-size: small;
+
+    
+
+}
+.profile-card a:hover {
+    color: #064579;
+  }
+.cover-pic{
+    display:block;
+	
+}
+
+
+.profile-pic
+{
+width:200px;
+border-radius:50%;
+margin-top:10px;
+margin-left: 20px;
+box-shadow: 0 0 0 0px #ff004f;
+transition: box-shadow 0.5s;
+display: block;
+margin-left: auto;
+margin-right: auto;
+width: 50%;
+
+
+}
+
+.profile-pic :hover{
+    box-shadow: 0 0 0 5px #ff004f;
+
+}
+
+.profile-card h1{
+    font-weight: 600;
+
+}
+/* .follow-btn{
+    display: inline-block;
+    text-decoration: none;
+    border:1px solid #ff004f;
+    color: #555;
+    padding :6px 35px;
+    margin:25px 0;
+} */
+
+.data
+{
+    display:flex;
+    justify-content:space-around;
+	
+
+}
+/* .row h6{
+ font-weight: 400;
+ font-size: 20px;
+} */
+
+.form {
+    margin-top: 100px;
+    /* border: 2px solid red; */
+    margin-left: 310px; /* Same width as the sidebar + left position in px */
+    font-size: 20px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+    
+  }
+.Overview{
+    /* text-align: left; */
+    background-color: #eee;
+    border-radius: 50px;
+    border:5px solid white;
+    margin: 10px;
+    opacity: 0.8;
+    
+    
+}  
+
+@media screen and (max-height: 450px) {
+.profile-card {padding-top: 15px;}
+.profile-card {font-size: 18px;}
+}
+
+#pic{
+    /* background-color: #064579; */
+    width: 100%;
+    
+    
+}
+/* .data{
+    width: 100%;
+    background-color: aqua;
+    text-align: left;
+    align-items: flex-start;
+} */
+.profile-card li{
+    /*border-radius: 50px; */
+    font-size:larger;
+    padding:5px;
+    margin-left: -30px;
+    border-bottom-style: solid;
+    /* border-top-style: solid; */
+    border-color: #6600ff;
+    border-radius: 30px;
+   
+    
+}
+.Overview h2{
+    text-align: center;
+}
+
+.skills{
+    border: 1px solid;
+    border: outset;
+    border-color: #ff004f;
+    padding: 3px;
+    /* background-color: #00ccff;  */
+    border-radius: 50px;   
+}
+
+.skill_container{
+    width: 80%;
+    margin-left: auto;
+}
+.project_container{
+    width: 90%;
+    margin-left: 2%;
+}
+#input-heading input{
+    border: 1px solid;
+    border: outset;
+    border-color: #2fff00;
+    padding: 3px;
+    /* background-color: #00ccff;  */
+    border-radius: 50px;
+    margin: auto;  
+}
+#input-desc input{
+    border: 1px solid;
+    border: outset;
+    border-color: #001aff;
+    padding: 3px;
+    width: 70%;
+    height: 40px;
+    margin: auto;
+    /* background-color: #00ccff;  */
+    /* border-radius: 50px;   */
+}
+#add-project, #save-project, #add-skill-button, #save-skills{
+    border: 3px solid;
+    /* border: outset; */
+    border-color: #ffffff;
+    padding: 3px;
+    width: fit-content;
+    height: auto;
+    margin: auto;
+    background-color: #6600ff;
+    border-radius: 50px;
+    font-size: medium;
+    color: white;
+}
+.Overview .project_buttons{
+    margin: 10px;
+}
+
+#delete_project{
+    border: 3px solid #6600ff;
+    border-radius: 50px;
+    width: auto;
+    height: 30px;
+    background-color: #6600ff;
+    /* margin-left: 20px; */
+}
+
+#delete_project input, .delete-button  {
+    border: 3px solid #ff0000;
+    border-radius: 50px;
+    background-color: #ff0000;
+    color: white;
+}
+.delete_project{
+    color:#ff0000
+}
+
+/* Style for skill items */
+.skill-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Style for delete button (hidden by default) */
+.delete-button {
+    display: none;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* Style for delete button on hover */
+.skill-item:hover .delete-button {
+    display: inline;
+}
+
+.add_project textarea, .add_project input[type=text], .add_skills input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid rgb(64, 0, 255);
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    /* background-image: url('searchicon.png'); */
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    /* transition: width 0.4s ease-in-out; */
+    transition: 0.6s;
+    outline: none;
+  }
+  
+.add_project textarea:focus,.add_project input[type=text]:focus ,.add_skills input[type=text]:focus {
+    border: 3px solid rgb(0, 255, 0);
+    width: 30%;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    color: #0707ff;
+  }
+
+#add-skill-button:hover, #add-project:hover, #save-project:hover, #save-skills:hover{
+    border: 3px solid rgb(0, 255, 0);
+}
+
+
+.header{
+    height:90px;
+    width:100%;
+    background-color: rgb(255, 255, 255);
+    border-bottom:2px solid #6600ff;
+    top: 0;
+    position: fixed;
+    z-index: 1;
+    }
+
+
+nav{
+    display:flex;
+    padding:1% 6%;
+    justify-content:space-between;
+    align-items:top;
+    }
+    .nav-links{
+        flex:1;
+        text-align:right;
+        margin: auto;
+        font-family: cursive;
+   }
+   .nav-links ul li{
+            list-style:none;
+            display:inline-block;
+            padding:8px 12px;
+              position:relative;
+   }
+   .nav-links ul li a{
+   color:rgb(124, 58, 239);
+   text-decoration:none;
+   font-size:20px;
+   }
+   .nav-links ul li::after{
+   content:'';
+   width:0%;
+   height:2px;
+   background:#4700fc;
+   display:block;
+   margin:auto;
+   transition:0.3s;
+   /* font-style: italic; */
+}
+.nav-links ul li:hover::after{
+    width:100%;
+    /* font-style: italic; */
+       
+    }
+
+
+ /* Style for the popup container */
+ #emailPopup {
+    /* display: none; */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 50%;
+    z-index: 2;
+}
+
+/* Style for the popup header */
+#emailPopup h2 {
+    margin-top: 0;
+}
+
+/* Style for the form elements */
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="email"], input[type="text"], input[type="password"], textarea {
+    width: 95%;
+    padding: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 13px;
+}
+
+input[type="submit"] {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* input[type="submit"]:hover {
+    background-color: #2980b9;
+} */
+/* Style for the entire page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+/* Style for the button */
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}

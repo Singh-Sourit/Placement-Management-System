@@ -1,0 +1,130 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{cname}} Student List</title>
+    <style>
+
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        
+        
+        .nav{
+            width:100%;
+            background-color: rgb(0, 0, 0);
+            display:flex;
+            /* padding:1% 6%; */
+            /* justify-content:space-between; */
+            /* align-items:top; */
+            text-align:right;
+            height:110px;
+            /* border-bottom:2px solid #6600ff; */
+            top: 0%;
+            position: fixed; 
+            /* border: 1px solid red; */
+            
+        }
+        li{
+            display: inline;
+        }
+        
+        section {
+            padding: 15px;
+            padding-top: 115px;
+        }
+        /* 
+        img{
+            top:0%;
+        } */
+        
+        
+        footer {
+            background-color:#000000;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+        
+        
+        .navin{
+            color: #fff; 
+            vertical-align: middle;
+             /* height: 100%; */
+             /* margin-left: 1%; */
+             /* margin-top: 3%;  */
+             font-size:70;
+             /* border: 1px solid rgb(0, 38, 255); */
+             /* top: 0%; */
+             width: 50%;
+             /* padding-top: 3%; */
+             /* border: 1px solid rgb(94, 37, 37); */
+             
+        }
+        .link{
+            /* margin-left: 10%; */
+            width: 50%;
+            /* border: 1px solid rgb(54, 225, 20); */
+            left: 0%;
+            /* color: #fff; */
+            font-size: x-large;
+            padding: 3%;
+        }
+        a, button{
+            background-color: aqua;
+            padding: 1%;
+            border-radius: 25px;
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        
+        }
+        
+        </style>
+
+</head>
+<body>
+    <div class="nav">  
+        <div style="color: #fff;" class="navin">{{cname}}</div>
+        <div class="link">
+            <a href="{{ url_for('company.company_list') }}" >Companies List</a>
+            <a href="{{ url_for('log.profile') }}" >Go back to Profile</a>
+            <button onclick="window.print()">Print this page</button>
+            
+        </div> 
+    </div>
+    <!-- <script>
+        function secprint(){
+            var prtContent = document.getElementsByClassName("student_list");
+            var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+            WinPrint.document.write(prtContent.innerHTML);
+            WinPrint.document.close();
+            WinPrint.focus();
+            WinPrint.print();
+            // WinPrint.close();
+        }
+        
+    </script> -->
+
+    <section>
+        <div class="student_list">
+            <h3>Total students applied = {{students_list.Applied|count}}</h3>
+            <h2>Roll Number</h2>
+            {% for i in students_list.Applied %} 
+                <span class="student_roll_no">{{i}}</span> <br>     
+            {%endfor%} 
+        </div>
+    </section>
+</body>
+</html>
+
+

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Placify Registration</title>
+    <link rel="stylesheet" href="static/registration.css">
+
+</head>
+
+<body>
+    <div class="header">
+        <nav>
+            <a href="{{ url_for('main.index') }}">
+                <img src="static/Placify_Logo.svg" height="70">
+            </a>
+            
+            <div class="nav-links">
+                <ul>
+                    <li><a href="home1.html">Placify Home</a></li>
+                    <li><a href="{{ url_for('log.profile') }}">Go back to Profile</a></li>
+                    <!-- <li><a href="{{ url_for('auth.register') }}">Sign Up</a></li>  -->
+                </ul>
+            </div>
+        </nav>
+    </div>	
+  
+    <div class="container">
+	
+        <h2>{{data.first_name}} {{data.roll_number}} <br>Edit Your Information</h2>
+		<form method="post">
+            <label for="first_name">First Name</label><br>
+            <input type="text" id="first_name" name="first_name" value="{{data.first_name}}" ><br>
+			<label for="middle_name">Middle Name</label><br>
+            <input type="text" id="middle_name" name="middle_name" value="{{data.middle_name}}"><br>
+			<label for="last_name">Last Name</label><br>
+            <input type="text" id="last_name" name="last_name" value="{{data.last_name}}" ><br>
+            
+			<label for="dob">Date of Birth</label><br>
+            <input type="date" id="dob" name="dob" value="{{data.dob}}" ><br>
+
+            <label for="email">Email:</label><br>
+            <input type="text" id="email" name="email" value="{{data.email}}" ><br>
+
+            <!-- <label for="password">Enter Strong Password:</label><br>
+            <input type="password" id="password" name="password" ><br> -->
+			
+            <label for="mobile_number">Mobile Number:</label><br>
+            <input type="tel" id="mobile_number" name="mobile_number" value="{{data.mobile_number}}" ><br>
+			
+            <label for="linkedin_id">Linkedin Profile link:</label><br>
+            <input type="tel" id="linkedin_id" name="linkedin_id" value="{{data.linkedin_id}}" ><br>
+            
+            <label for="other_link">Other link:</label><br>
+            <input type="tel" id="other_link" name="other_link" value="{{data.other_link}}" ><br>
+
+			<label for="address">Permanent Address</label><br>
+            <input type="text" id="address" name="address" value="{{data.address}}" ><br>
+			
+			<!-- <label for="Current Address">Current Address</label>
+            <input type="text" id="Current Address" name="Current Address"> -->
+			
+			<label for="city">City</label><br>
+            <input type="text" id="city" name="city" value="{{data.city}}"><br>
+			
+
+		
+            <label for="state">State</label><br>
+            <input type="text" id="state" name="state" value="{{data.state}}"><br>
+			
+			
+		
+			<label for="country">Country</label><br>
+            <input type="text" id="country" name="country" value="{{data.country}}"><br>
+			
+			
+			
+			
+			<label for="percentage_10">10th Percentage</label><br>
+            <input type="number" id="percentage_10" name="percentage_10" step="0.01" value="{{data.percentage_10}}" ><br>
+			<label for="school_name_10">10th School Name</label>	<br>		
+            <input type="text" id="school_name_10" name="school_name_10" value="{{data.school_name_10}}" ><br>
+			<label for="school_10_addr">10th School Address</label>			<br>
+            <input type="text" id="school_10_addr" name="school_10_addr" value="{{data.school_10_addr}}" ><br>
+			
+			<label for="edu_board_10">10th Board</label><br>
+            <input type="text" id="edu_board_10" name="edu_board_10" value="{{data.edu_board_10}}" ><br>
+			
+			<label for="yop_10">Year</label><br>
+            <input type="text" id="yop_10" name="yop_10" value="{{data.yop_10}}"><br>
+			
+			<label for="percentage_12">12th Percentage</label><br>
+            <input type="number" id="percentage_12" name="percentage_12" step="0.01" value="{{data.percentage_12}}" ><br>
+			
+			<label for="school_name_12">12th School/College Name</label><br>
+            <input type="text" id="school_name_12" name="school_name_12" value="{{data.school_name_12}}" ><br>
+            <label for="school_12_addr">12th School Address</label>		<br>	
+            <input type="text" id="school_12_addr" name="school_12_addr" value="{{data.school_12_addr}}" ><br>
+			<label for="edu_board_12">Board</label><br>
+            <input type="text" id="edu_board_12" name="edu_board_12" value="{{data.edu_board_12}}" ><br>
+            <label for="subject_12">12th Subject</label><br>
+            <input type="text" id="subject_12" name="subject_12" value="{{data.subject_12}}" ><br>
+			
+			<label for="yop_12">Year</label><br>
+            <input type="text" id="yop_12" name="yop_12" value="{{data.yop_12}}" ><br>
+			
+			<!-- <label for="roll_number">College/University Roll Number:</label><br>
+            <input type="text" id="roll_number" name="roll_number" ><br> -->
+			
+			<label for="clg_university_name">Institute Name</label><br>
+            <input type="text" id="clg_university_name" name="clg_university_name" value="{{data.clg_university_name}}" ><br>
+			<label for="clg_university_addr">Institute Address</label><br>
+            <input type="text" id="clg_university_addr" name="clg_university_addr" value="{{data.clg_university_addr}}" ><br>
+			<label for="clg_university_yos">Graduation Starting Year</label><br>
+            <input type="text" id="clg_university_yos" name="clg_university_yos" value="{{data.clg_university_yos}}" ><br>
+            <label for="clg_university_yop">Graduation Completion Year</label><br>
+            <input type="text" id="clg_university_yop" name="clg_university_yop" value="{{data.clg_university_yop}}" ><br>
+            <label for="clg_marks">Graduation %/CGPA Year</label><br>
+            <input type="text" id="clg_marks" name="clg_marks" value="{{data.clg_marks}}" ><br>
+            
+			
+            <label for="course">Course:</label><br>
+            <select id="course" name="course">
+                <option value="{{data.course}} ">{{data.course}}</option>
+                <option value="B-tech">B-tech</option>
+                <option value="B.COM">B.COM</option>
+                <option value="BSC">BSC</option>
+                <option value="MSC">MSC</option>
+                <!-- <option value="Agriculture">Agriculture</option> -->
+                <option value="MBA">MBA</option>
+                <option value="BBA">BBA</option>
+                <!-- Add more options as needed -->
+            </select><br>
+			
+            <label for="branch">Branch:</label><br>
+            <select id="branch" name="branch">
+                <option value="{{data.branch}} ">{{data.branch}}</option>
+                <option value="IT">Information Technology</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Mechanical">Mechanical</option>
+                <option value="Electrical">Electrical</option>
+                <option value="Civil">Civil</option>
+                <option value="Human Resource">Human Resource</option>
+                <!-- Add more options as needed -->
+            </select><br>
+
+			<label for="gender">Gender:</label><br>
+            <select id="gender" name="gender">
+                <option value="{{data.gender}} ">{{data.gender}}</option>
+                <option value="Male"> Male</option>
+                <option value="Female">Female</option>
+                <option value="Third Gender">Third Gender </option>
+            </select><br>
+            
+			
+			<!-- <label for="skills">Skills (separate with comma):</label>
+            <input type="text" id="skills" name="skills" > -->
+			
+            <!-- <button type="submit"><a href="new 1.html" id="button" class="button">Register</a></button> -->
+            <input type="submit" value="Register" class="button" id="button">
+        </form>
+        <p>Already have an account? <a href="{{ url_for('log.login') }}" style="color: white;">Login Here</a></p>
+    </div>
+
+</body>
+</html>

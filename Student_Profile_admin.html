@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/profile.css">
+    <title>Profile</title>
+</head>
+
+<style>
+
+body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            /* background-size: cover; */
+            /* display: flex; */
+            justify-content:left-side;
+            align-items: left-side;
+            
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+	
+        }
+
+        .profile-card{
+    /* width: 300px;
+    max-width: 350px;
+	height:50%;
+    text-align: center;
+	align-items:left-side;
+    background: #0798e0;
+    color: #ffffff;
+    position: -webkit-sticky;
+    position: sticky; */
+    /* align-items:center; */
+    width: 300px;
+    position: fixed;
+    z-index: 1;
+    top: 100px;
+    left: 10px;
+    background: #aadaf0;
+    overflow-x: hidden;
+    padding: 8px 0;
+    /* align-items: center; */
+    border-radius: 50px;
+    border:5px solid white ;
+
+    
+
+}
+.profile-card a:hover {
+    color: #064579;
+  }
+.cover-pic{
+    display:block;
+	
+}
+
+
+.profile-pic
+{
+width:200px;
+border-radius:50%;
+margin-top:10px;
+margin-left: 20px;
+box-shadow: 0 0 0 0px #ff004f;
+transition: box-shadow 0.5s;
+display: block;
+margin-left: auto;
+margin-right: auto;
+width: 50%;
+
+
+}
+
+.profile-pic :hover{
+    box-shadow: 0 0 0 5px #ff004f;
+
+}
+
+.profile-card h1{
+    font-weight: 600;
+
+}
+
+.form {
+    margin-top: 100px;
+    /* border: 2px solid red; */
+    margin-left: 310px; /* Same width as the sidebar + left position in px */
+    font-size: 20px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+    
+  }
+
+  .Overview{
+    /* text-align: left; */
+    background-color: #eee;
+    border-radius: 50px;
+    border:5px solid white;
+    margin: 10px;
+    opacity: 0.8; 
+}  
+
+#pic{
+    /* background-color: #064579; */
+    width: 100%;   
+}
+
+.profile-card li{
+    /*border-radius: 50px; */
+    font-size:larger;
+    padding:5px;
+    margin-left: -30px;
+    border-bottom-style: solid;
+    /* border-top-style: solid; */
+    border-color: #6600ff;
+    border-radius: 30px;
+   
+    
+}
+.Overview h2{
+    text-align: center;
+}
+
+.skills{
+    border: 1px solid;
+    border: outset;
+    border-color: #ff004f;
+    padding: 3px;
+    /* background-color: #00ccff;  */
+    border-radius: 50px;   
+}
+
+.skill_container{
+    width: 80%;
+    margin-left: auto;
+}
+.project_container{
+    width: 90%;
+    margin-left: 2%;
+}
+.skill-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.header{
+    height:90px;
+    width:100%;
+    background-color: rgb(255, 255, 255);
+    border-bottom:2px solid #6600ff;
+    top: 0;
+    position: fixed;
+    z-index: 1;
+    }
+
+
+nav{
+    display:flex;
+    padding:1% 6%;
+    justify-content:space-between;
+    align-items:top;
+    }
+    .nav-links{
+        flex:1;
+        text-align:right;
+        margin: auto;
+        font-family: cursive;
+   }
+   .nav-links ul li{
+            list-style:none;
+            display:inline-block;
+            padding:8px 12px;
+              position:relative;
+   }
+   .nav-links ul li a{
+   color:rgb(124, 58, 239);
+   text-decoration:none;
+   font-size:20px;
+   }
+   .nav-links ul li::after{
+   content:'';
+   width:0%;
+   height:2px;
+   background:#4700fc;
+   display:block;
+   margin:auto;
+   transition:0.3s;
+   /* font-style: italic; */
+}
+.nav-links ul li:hover::after{
+    width:100%;
+    /* font-style: italic; */
+       
+    }
+
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+</style>
+
+<body background="static/back1.jpg">
+
+    
+    <div class="header">
+        <nav>
+            <a href="{{ url_for('main.index') }}">
+                <img src="static/Placify_Logo.svg" height="70">
+            </a>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="{{ url_for('admin.student_list') }}">Student List</a></li>
+                    <li><a href="{{ url_for('admin.admin_profile') }}">Admin Dashboard</a></li>
+                    <!-- <li><button onclick="openMails()">Mails</button></li> -->
+                    <!-- <li><a href="home1.html">About</a></li> -->
+                    <!-- <li><a href="{{ url_for('log.login') }}">Login</a></li> -->
+                    <!-- <li><a href="{{ url_for('auth.register') }}">Sign Up</a></li>  -->
+                </ul>
+            </div>
+        </nav>
+    </div>	
+ 
+	
+    <div class="profile-card"  >
+
+        <div id="pic">
+            <img src="SSR5.jpg" class="profile-pic" width="200" height="200">
+        </div>
+
+        
+        <ul style="list-style-type: none;list-style-position: outside;">
+            <li >Name: {{ user.first_name }} {{user.middle_name}} {{user.last_name}}</li>
+            <li>Address: <Address>{{user.address}}, {{user.city}}, {{user.country}}</Address></li>
+            <li>Mob. no.:<a href="tel:{{user.mobile_number}}">{{user.mobile_number}}</a></li>
+            <li>Email: <a href="mailto:{{user.email}}">{{user.email}}</a></li>
+            <li>linkedin: <a href="{{user.linkedin_id}}">{{user.linkedin_id}}</a></li>
+            <li>Other:<a href="{{user.other_link}}">{{user.other_link}}</a></li>
+            
+        </ul>
+        
+        
+    </div>    
+
+	
+    <div class="form" >
+
+        <div class="Overview">
+            <h2>Profile Details: </h2>
+            <ul style="text-align: left;list-style-type: none;">
+
+                <li>Roll Number: {{user.roll_number}}</li>
+                <li>Date of Birth: {{user.dob}}</li>
+                <li>Gender: {{user.gender}}</li>
+            </ul>
+            <br>
+        </div>
+
+        <div class="Overview">
+            <h2>Education: </h2>
+            <table style="width:90%; margin: 25px;">
+                <!-- education 1 -->
+                <tr style="width: 50%;">
+                    <td><b>{{user.clg_university_name}}</b></td>
+                    <td>{{user.clg_university_addr}}</td>
+                </tr>
+                <tr>
+                    <td><i>{{user.course}} in {{user.branch}}</i> current CGPA: {{user.clg_marks}}</td>
+                    <td><i>{{user.clg_university_yos}} - {{user.clg_university_yop}}</i></td>
+                </tr>
+                <!-- education 2 -->
+                <tr style="width: 50%;">
+                    <td><b>{{user.school_name_12}}</b></td>
+                    <td>{{user.school_12_addr}}</td>
+                </tr>
+                <tr>
+                    <td><i>{{user.subject_12}} ,Higher Secondary, {{user.edu_board_12}};</i> Marks(%/GPA): {{user.percentage_12}}</td>
+                    <td><i>{{user.yop_12}}</i></td>
+                </tr>
+                <!-- education 3 -->
+                <tr style="width: 50%;">
+                    <td><b>{{user.school_name_10}}</b></td>
+                    <td>{{user.school_10_addr}}</td>
+                </tr>
+                <tr>
+                    <td><i>High School, {{user.edu_board_10}};</i> Marks(%/GPA): {{user.percentage_10}}</td>
+                    <td><i>{{user.yop_10}}</i></td>
+                </tr>
+              </table>
+              <br>
+        </div>
+        <div class="Overview">
+            <h2>Skills: </h2>
+           
+                <div class="skill_container">
+                    {% for i in user.student_skills %} 
+                        <div class="skill-item">
+                            
+                            <span class="skills">{{i.skill_name}}</span>  
+                            <!-- <a href="/delete_skill/{{i.skill_name}}"><button class="delete-button" >Delete</button></a> -->
+                            
+                        </div>
+                    {%endfor%} 
+   
+                </div>
+         
+            <br>
+        </div>
+
+        <div class="Overview">
+            <h2>Projects: </h2>
+            <div id="projects-container">
+
+                <ol id="myList">
+                    {% for project in user.projects %}
+                        <li>
+                            <strong>Project Name:</strong> {{ project.project_name }}<br>
+                            <strong>Project Details:</strong> {{ project.project_details }}<br><br>
+                        </li>
+                    {% endfor %}
+                </ol>
+
+            </div>
+            
+           
+            <br>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="static/admin_dashboard.css">
+  
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+</head>
+<body>
+
+<!-- Hidden popup div -->
+<div id="emailPopup" style="display: none;">
+    <h2>Send Email</h2>
+    
+    <form method="POST" action="/send_email">
+        <!-- <label for="sender_email">Sender Email:</label>
+        <input type="email" id="sender_email" required> -->
+        <!-- <label for="sender_password">Sender Password:</label>
+        <input type="text" id="sender_password" required> -->
+
+        <!-- <label for="email">Recipient Email:</label> -->
+        <!-- <input type="email" id="recipient_email" required><br> -->
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required><br>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea><br>
+        <input type="submit" value="Send"> <button onclick="closeme1()">Close</button>
+    </form>
+    
+</div>
+
+<!-- Hidden popup div -->
+<div id="viewmails" style="display: none;">
+    <h2>Mails</h2>
+    {% for mail in mails %}
+        <hr>
+        Date -> {{mail['date']}}<br>
+        Time -> {{mail['time']}}<br>
+        Subject -> {{mail['subject']}}<br>
+        <pre>{{mail['message']}}</pre><br>
+        <a href="/delete_mail/{{mail['date']}}/{{mail['time']}}"><button class="delete-button" >Delete</button></a>
+        <hr>
+    {% endfor %}
+    <br>
+    <button onclick="closeme2()">Close</button>
+</div>
+<script>
+   
+</script>
+
+    <input type="checkbox" id="check">
+    <label for="check">
+        <i class="fas fa-bars" id="btn"></i>
+        <i class="fas fa-times" id="cancel"></i>
+    </label>
+    <div class="sidebar">
+        <header></header>
+        <ul><li><a href="dashboard.html"><i class="fas fa-qrcode"></i>Dashboard</a></li>
+            <li><a href="{{url_for('admin.student_list')}}"><i class="fas fa-chart-bar"></i>List of Students</a></li>
+            <!-- <li><a href="about.html"><i class="fas fa-briefcase"></i>Comapany List</a></li> -->
+            <!-- <li><a href="#"><i class="fas fa-question-circle"></i>Add Company</a></li> -->
+            <!-- <li><a href="#"><i class="fas fa-star"></i>Testimonials</a></li>
+            <li><a href="#"><i class="fas fa-cog"></i>Settings</a></li> -->
+            <li class="logout"><a href="{{url_for('admin.logout')}}"><i class="fas fa-sign-out-alt"></i>logout</a></li>
+        </ul>             
+    </div> 
+    <div class="std--content">
+        <div class="header--wrapper">
+           <div class="header--title">
+            
+             <h2>Welcome Admin</h2>
+            </div>
+           <div class="user--info">
+             <div class="search--box">
+              <i class="fas fa-search"></i>
+              <input type="text" placeholder="search"/>
+              </div>
+              <img src="image1.png" >
+            </div>
+    
+        </div>
+<div class="std-container">
+    <h3 class="main-title"></h3>
+    <div class="std-wrapper">
+        <div class="std-card light-red">
+            <div class="std-header">
+                <div class="nfo">
+                    <span class="title">Send Emails</span>
+                    <span class="std-value">E-mail </span>
+					<!-- <a href="profile.html"> Send Emails</a> -->
+                    <button onclick="showPopup()">Send Email</button><br>
+                    <button onclick="openMails()">View Mails Send</button>
+                    
+                </div>  
+            </div>
+            
+        </div>
+        <div class="std-card light-red">
+            <div class="std-header">
+                <div class="nfo">
+                    <span class="title">Company</span>
+                    <span class="std-value">Add Companies </span>
+					<a href="{{url_for('company.add_company')}}">New Companies</a>
+					
+                </div>
+               
+            </div>
+            
+        </div>
+        <div class="std-card light-green">
+            <div class="std-header">
+                <div class="nfo">
+                    <span class="title">Total Companies</span>
+					    <span class="std-value">Total Companies<br>{{count_companies}}</span>
+					 
+                  
+                </div>
+          
+            </div>
+            
+        </div>
+        <div class="std-card light-blue">
+            <div class="std-header">
+                <div class="nfo">
+                    <span class="title">Total Number Of Students</span>
+                    <span class="std-value"><a href="#">Total Number of Students <br>{{count_students}} </a></span>
+                </div>
+            </div>
+            
+        </div>
+    </div> 
+</div>
+<div class="tabular-wrapper">
+    
+    <h3 class="main-title"></h3>
+    <div class="table-container">
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Company Name</th>
+                    <!-- <th>Job Description</th> -->
+                    <th>Profile</th>
+                    <!-- <th>Eligibility</th> -->
+                    <th>Location</th>
+                    <!-- <th>Package</th> -->
+                </tr>
+            </thead>
+                <tbody>
+                    
+                    {% for company in companies %}
+                        <tr>
+                            <td>{{company['date']}}</td>
+                            <td>{{company['company_name']}}</td>
+                            <td>{{company['job_profile']}}</td>
+                            <!-- <td>{{company['qualification']}}</td> -->
+                            <td>{{company['location']}}</td>
+                            
+                            <td><button><a href="/viewCompany/{{company['company_name']}}">Read Details</button></a></td>
+                            <td><button><a href="/delete_company/{{company['company_name']}}">Delete Company</button></a></td>
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+               
+        </table>
+    </div> 
+</div>
+
+<script>
+    function closeme1() {
+        var popu = document.getElementById("emailPopup");
+        popu.style.display = "none";
+    }
+    function showPopup() {
+        var popup = document.getElementById("emailPopup");
+        popup.style.display = "block";
+    }
+
+    function closeme2() {
+        var pop = document.getElementById("viewmails");
+        pop.style.display = "none";
+    }
+    function openMails() {
+        var popup = document.getElementById("viewmails");
+        popup.style.display = "block";
+    }
+
+    // function sendEmail() {
+    //     var email = document.getElementById("email").value;
+    //     var description = document.getElementById("description").value;
+
+    //     // Replace this with actual email sending logic
+    //     alert("Sending email to: " + email + "\nDescription: " + description);
+
+    //     var popup = document.getElementById("emailPopup");
+    //     popup.style.display = "none";
+    // }
+</script>
+</body>
+</html>

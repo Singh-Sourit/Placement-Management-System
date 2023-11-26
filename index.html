@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+      <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placify Home</title>
+    <link rel="stylesheet" href="static/index.css">
+	</head>
+	<body>
+<section class="header">
+	<nav>
+	<a href="{{ url_for('main.index') }}"><img src="static/SSR2.jpeg" height="70"></a>
+	<div class="nav-links">
+	
+	<ul>
+	<!-- <li><a href="home1.html">HOME</a></li> -->
+	<li><a href="{{ url_for('auth.register') }}">REGISTER</a></li>
+	<li><a href="{{ url_for('log.login') }}">Login</a></li> 
+	</ul>
+	</div>
+	</nav>
+	
+	<img src="static/student.jpg" height="500" width="900">
+	<div class="text-box">
+	<h1>Placify:<br>Where Dreams<br> Meet Destinies!</h1>
+	<p>
+		Empowering Students for their Journey to Landing Their Dream Job!<br>
+		Revolutionizing the Traditional Placement Process for a Seamless Experience!<br>
+		Enabling Employers to Discover Their Ideal Talent Match!
+	</p>
+	<!-- <p> Placify.com is India's foremost Online Placement Portal, catering to multifarious job seekers as well as recruiters in India. When it comes to searching jobs in India,  the name Placify.com serves as a preferred Indian Jobs Site. 
+	The reputed players of the modern corporate world frequently browse through the portal to hire professionals from different industrial segments.
+    As a leading job portal Placify.com always helps jobseekers, mainly freshers to find the latest jobs according to their qualification in all possible fields in top MNC Companies across India. 
+	Now Placify has become the largest online job portal for job seekers, and has the biggest network of recruiters and companies in all possible fields for resume search and free job posting.</p> -->
+	 <a href="{{ url_for('auth.register') }}" class="hero-btn">Get Started</a>
+	</div>
+	
+	</section>

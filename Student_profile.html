@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="static/profile.css">
+</head>
+<body background="static/back1.jpg">
+    <!-- Hidden popup div -->
+    <div id="emailPopup" style="display: none;">
+        <h2>Mails</h2>
+        {% for mail in mails %}
+            <hr>
+            Date -> {{mail['date']}}<br>
+            Time -> {{mail['time']}}<br>
+            Subject -> {{mail['subject']}}<br>
+            <pre>{{mail['message']}}</pre><br>
+            <hr>
+        {% endfor %}
+        <br>
+        <button onclick="closeme()">Close</button>
+    </div>
+    <script>
+        function closeme() {
+            var popu = document.getElementById("emailPopup");
+            popu.style.display = "none";
+        }
+        function openMails() {
+            var popup = document.getElementById("emailPopup");
+            popup.style.display = "block";
+        }
+    </script>
+    
+    <div class="header">
+        <nav>
+            <a href="{{ url_for('main.index') }}">
+                <img src="static/Placify_Logo.svg" height="70">
+            </a>
+            <div class="nav-links">
+                <ul>
+                    <li><button onclick="openMails()">Mails</button></li>
+                    <!-- <li><a href="home1.html">About</a></li> -->
+                    <!-- <li><a href="{{ url_for('log.login') }}">Login</a></li> -->
+                    <!-- <li><a href="{{ url_for('auth.register') }}">Sign Up</a></li>  -->
+                </ul>
+            </div>
+        </nav>
+    </div>	
+ 
+	
+    <div class="profile-card"  >
+
+        <div id="pic">
+            <img src="SSR5.jpg" class="profile-pic" width="200" height="200">
+        </div>
+
+        
+        <ul style="list-style-type: none;list-style-position: outside;">
+            <li >Name: {{ user.first_name }} {{user.middle_name}} {{user.last_name}}</li>
+            <li>Address: <Address>{{user.address}}, {{user.city}}, {{user.country}}</Address></li>
+            <li>Mob. no.:<a href="tel:{{user.mobile_number}}">{{user.mobile_number}}</a></li>
+            <li>Email: <a href="mailto:{{user.email}}">{{user.email}}</a></li>
+            <li>linkedin: <a href="{{user.linkedin_id}}">{{user.linkedin_id}}</a></li>
+            <li>Other:<a href="{{user.other_link}}">{{user.other_link}}</a></li>
+            <li><a href="{{ url_for('resume.generate_resume') }}">Generate Resume</a></li>
+            <li><a href="{{ url_for('edit_info.edit') }}">Edit Student Information</a></li>
+            <li><a href="{{ url_for('company.company_list') }}">Company List</a></li>
+            <li><a href="/logout">LOGOUT</a></li>
+        </ul>
+        
+        
+    </div>    
+
+	
+    <div class="form" >
+
+        <div class="Overview">
+            <h2>Profile Details: </h2>
+            <ul style="text-align: left;list-style-type: none;">
+                <li>Roll Number: {{user.roll_number}}</li>
+                <li>Date of Birth: {{user.dob}}</li>
+                <li>Gender: {{user.gender}}</li>
+            </ul>
+            <br>
+        </div>
+
+        <div class="Overview">
+            <h2>Education: </h2>
+            <table style="width:90%; margin: 25px;">
+                <!-- education 1 -->
+                <tr style="width: 50%;">
+                    <td><b>{{user.clg_university_name}}</b></td>
+                    <td>{{user.clg_university_addr}}</td>
+                </tr>
+                <tr>
+                    <td><i>{{user.course}} in {{user.branch}}</i> current CGPA: {{user.clg_marks}}</td>
+                    <td><i>{{user.clg_university_yos}} - {{user.clg_university_yop}}</i></td>
+                </tr>
+                <!-- education 2 -->
+                <tr style="width: 50%;">
+                    <td><b>{{user.school_name_12}}</b></td>
+                    <td>{{user.school_12_addr}}</td>
+                </tr>
+                <tr>
+                    <td><i>{{user.subject_12}} ,Higher Secondary, {{user.edu_board_12}};</i> Marks(%/GPA): {{user.percentage_12}}</td>
+                    <td><i>{{user.yop_12}}</i></td>
+                </tr>
+                <!-- education 3 -->
+                <tr style="width: 50%;">
+                    <td><b>{{user.school_name_10}}</b></td>
+                    <td>{{user.school_10_addr}}</td>
+                </tr>
+                <tr>
+                    <td><i>High School, {{user.edu_board_10}};</i> Marks(%/GPA): {{user.percentage_10}}</td>
+                    <td><i>{{user.yop_10}}</i></td>
+                </tr>
+              </table>
+              <br>
+        </div>
+        <div class="Overview">
+            <h2>Skills: </h2>
+           
+                <div class="skill_container">
+                    {% for i in user.student_skills %} 
+                        <div class="skill-item">
+                            
+                            <span class="skills">{{i.skill_name}}</span>  
+                            <a href="/delete_skill/{{i.skill_name}}"><button class="delete-button" >Delete</button></a>
+                            
+                        </div>
+                    {%endfor%} 
+   
+                </div>
+
+            
+
+
+            <form method="POST" action="/add_skills" id="">
+                <div id="skill-container2">
+                    <!-- SKILLS -->
+                </div>
+                <button type="button" id="add-skill-button">Add New skill</button><br>
+                <input type="submit" value="Save Skills" id="save-skills">
+            </form>
+            <br>
+        </div>
+
+        <script>
+
+               // JavaScript to add more skills input fields
+               const addSkillButton = document.getElementById('add-skill-button');
+                const skillsContainer2 = document.getElementById('skill-container2');
+        
+                addSkillButton.addEventListener('click', () => {
+                    const skillDiv = document.createElement('div');
+                    skillDiv.classList.add('add_skills');
+                    skillDiv.innerHTML = `
+                        <label for="project_name">Enter Skill:</label>
+                        <input type="text" name="skill_name[]" required><br>
+                        `;
+                    skillsContainer2.appendChild(skillDiv);
+                });
+
+        </script>
+
+
+        <div class="Overview">
+            <h2>Projects: </h2>
+            
+            <form method="POST" action="/add_projects">
+                <div id="projects-container">
+
+                    <ol id="myList">
+                        {% for project in user.projects %}
+                            <li>
+                                <strong>Project Name:</strong> {{ project.project_name }}<br>
+                                <strong>Project Details:</strong> {{ project.project_details }}<br><br>
+                            </li>
+                        {% endfor %}
+                    </ol>
+
+                </div>
+
+                <button type="button" id="add-project">Add New Project</button><br>
+                <input type="submit" value="Save Projects" id="save-project">
+            </form>
+            <div id="project_container2" style="text-align: center; width: auto;" >
+                <span>To delete project select the project number from the drop-down and click Delete Project</span>
+                <form action="/delete_project" method="post" id="delete_project" >
+                    <input type="submit" value="Delete Project" >
+                </form>
+            </div>
+
+            <script>
+                // JavaScript to add more project input fields
+                const addProjectButton = document.getElementById('add-project');
+                const projectsContainer = document.getElementById('projects-container');
+        
+                addProjectButton.addEventListener('click', () => {
+                    const projectDiv = document.createElement('div');
+                    projectDiv.classList.add('add_project');
+                    projectDiv.innerHTML = `
+                        <label for="project_name">Project Name:</label>
+                        <input type="text" name="project_name[]" required><br>
+                        
+                        <label for="project_details">Project Details:</label>
+                        <textarea name="project_details[]" required></textarea><br>
+                    `;
+                    projectsContainer.appendChild(projectDiv);
+                });
+
+
+             
+
+
+                // Count the number of <li> elements inside the list
+                var myList = document.getElementById("myList");
+                var itemCount = myList.getElementsByTagName("li").length
+
+                // Create a select element
+                // var selectn = document.createElement("select");
+                var selectn = document.createElement("select");
+                var option = document.createElement("option");
+                // selectn.name = delete_project;
+                selectn.classList.add('delete_project');
+
+                // Set the name attribute
+                selectn.name = "mySelect"; // Replace "mySelect" with your desired name
+
+                // option.value = 0;
+                option.text = "Select Project to Delete";
+                selectn.appendChild(option);
+                // Create and append option elements with values from 1 to 5
+                for (var i = 1; i <= itemCount; i++) {
+                    var option = document.createElement("option");
+                    option.value = i;
+                    option.text = i;
+                    selectn.appendChild(option);
+                }
+
+                // Add the select element to the document
+                // document.body.appendChild(select);
+                const delete_project = document.getElementById('delete_project');
+                delete_project.appendChild(selectn);
+
+            </script>
+            <br>
+        </div>
+    </div>
+</body>
+</html>
+
+ <!-- <div class="project_container">
+                <!- Initially, show input fields for one project --
+                <div class="project">
+                    <label for="project_name">Project Name:</label>
+                    <input type="text" name="project_name[]" required><br>
+                    
+                    <label for="project_details">Project Details:</label>
+                    <textarea name="project_details[]" required></textarea><br>
+                </div>
+            </div> -->
+
+            <!-- <form method="post" action="/save">
+                <div id="project_data">
+                    <--Dynamically generated Fields--
+                </div>
+                <input type="submit" value="Submit" class="project_buttons">
+            </form>
+            <button onclick='addInput()' class="project_buttons">+Add input</button> -->
+
+
+            <!-- <script>
+                const container = document.getElementById('project_data');
+                // const description = document.getElementById('input-desc');
+                var maxInputAllowed = 3;
+                // Get the reference to the list element by its ID
+                var myList = document.getElementById("myList");
+                
+                // Count the number of <li> elements inside the list
+                var itemCount = myList.getElementsByTagName("li").length;
+                // Display the count
+                // console.log("Number of items in the list: " + itemCount);   
+                var inputCount = itemCount/2;
+                // Call addInput() function on button click
+                function addInput(){
+                    inputCount++; // Increment input count by one
+                    if(inputCount>3){
+                        alert('You can add maximum 3 input fields.');
+                        return;
+                    }
+                    let Project_name = document.createElement('input');
+                    let Project_desc = document.createElement('textarea');
+                    Project_name.placeholder = 'Enter Project Name';
+                    Project_name.name = 'project_name';
+                    Project_name.style['width'] = '50%';
+                    Project_name.style['border'] = '2px outset Green';
+                    Project_name.style['border-radius'] = '50px';
+                    Project_name.style['padding'] = '5px';
+                    Project_name.style['height'] = '20px';
+                    Project_name.style['margin'] = 'auto';
+        
+                    Project_desc.placeholder = 'Enter Project Description';
+                    Project_desc.name = 'project_details';
+                    Project_desc.style['border'] = '2px outset blue';
+                    // Project_desc.style['border-radius'] = '50px';
+                    Project_desc.style['padding'] = '5px';
+                    Project_desc.style['width'] = '70%';
+                    Project_desc.style['height'] = '40px';
+                    Project_desc.style['margin'] = 'auto';
+        
+                    let div = document.createElement('div');
+                    div.innerHTML = inputCount;
+                    container.appendChild(div);
+                    container.appendChild(Project_name);
+                    container.appendChild(Project_desc);
+                    container.appendChild(document.createElement('br'));
+                    container.appendChild(document.createElement('br'));
+                }
+        
+            </script> -->
+            <!-- {% for project in user.projects %}
+                        <li>
+                            <strong>Project Name:</strong> {{ project.project_name }}<br>
+                            <strong>Project Details:</strong> {{ project.project_details }}
+                        </li>
+                    {% endfor %} -->
+                    <!-- {% set counter = 0 %}
+                    {% for project in (user.projects) %}
+                        <li>
+                            {% set counter = counter + 1 %}
+                            <strong>Project {{ counter }} Name:</strong> {{ project.project_name }}<br>
+                            <strong>Project Details:</strong> {{ project.project_details }}
+                            <form method="POST" action="/delete_project/{{ counter }}">
+                                <button type="submit">Delete Project</button>
+                            </form>
+                        </li>
+                        
+                    {% endfor %} -->
+                    <!-- Initially, show input fields for one project -->
+                    <!-- <div class="project">
+                        <!- <label for="project_name">Project Name:</label>
+                        <input type="text" name="project_name[]" required><br>
+                        
+                        <label for="project_details">Project Details:</label>
+                        <textarea name="project_details[]" required></textarea><br> --
+                    </div> -->
+<!-- 
+                    // const select_project = document.createElement('div');
+                    // select_project.innerHTML = `
+                    //     <label for="course">Delete Project:</label>
+                    //     <select id="delete_project" name="delete_project">
+                    //         <option value="Select ">Select</option>
+                    //         <option value="B-tech/BE">B-tech/BE</option>
+                    //         <option value="B.COM">B.COM</option>
+                    //         <option value="BSC">BSC</option>
+                    //         <option value="MSC">MSC</option>
+                    //         <option value="Fnnce">Finance</option>
+                    //         <option value="Engineering">Engineering</option>
+                    //         <!- Add more options as needed --
+                    //     </select>
+                    //     `;
+                    //     projectsContainer.appendChild(projectDiv); -->
